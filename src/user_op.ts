@@ -64,6 +64,7 @@ export default class UserOp implements IClassUserOP<UserOp> {
           : undefined,
     };
     return Object.keys(obj).reduce(
+      /* eslint-disable @typescript-eslint/no-explicit-any */
       (prev, curr) =>
         (obj as any)[curr] !== undefined
           ? { ...prev, [curr]: (obj as any)[curr] }
@@ -141,12 +142,12 @@ export default class UserOp implements IClassUserOP<UserOp> {
     return this;
   }
   async executeMiddlewares(): Promise<UserOp> {
-    for (let middleware of this.middlewares){
+    for (const middleware of this.middlewares){
       await middleware(this.userOp);
     }
     return this;
   }
-  getSender() {return this.userOp.sender;};
+  getSender() {return this.userOp.sender;}
   getNonce() {return this.userOp.nonce;}
   getInitCode() {return this.userOp.initCode;}
   getCallData() {return this.userOp.callData;}
@@ -157,7 +158,7 @@ export default class UserOp implements IClassUserOP<UserOp> {
   getMaxPriorityFeePerGas() {return this.userOp.maxPriorityFeePerGas;}
   getPaymasterAndData() {return this.userOp.paymasterAndData;}
   getSignature() {return this.userOp.signature;}
-  get(): IUserOperation {return this.userOp};
+  get(): IUserOperation {return this.userOp}
   getDefaults(): IUserOperation {return this.defaultUserOp;}
   getMiddlewares(): UserOpMiddlewareFn[] {return this.middlewares;}
   toJSON = (): {[key: string]: string} => {
