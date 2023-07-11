@@ -1,5 +1,5 @@
 import {ethers} from "ethers";
-import {DEFAULT_USER_OP} from "./constants"
+import {DEFAULT_USER_OP} from "./constants";
 import {IClassUserOP, IUserOperation, UserOpMiddlewareFn} from "types";
 
 export default class UserOp implements IClassUserOP<UserOp> {
